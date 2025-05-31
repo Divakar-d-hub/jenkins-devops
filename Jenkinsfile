@@ -26,6 +26,19 @@ pipeline
 			}
 		}
 	}
+	post
+	{
+		always{
+			echo 'run always'
+		}
+		success{
+			echo 'run when success'
+		}
+		failure
+		{
+			echo 'run when failure'
+		}
+	}
 }
 
 
