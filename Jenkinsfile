@@ -14,14 +14,14 @@ pipeline
 	environment{
 		dockerhome= tool 'mydocker'
 		mavenhome= tool 'mymaven'
-		PATH = '$dockerhome/bin:$mavenhome/bin:$PATH'
+		PATH+EXTRA = '$dockerhome/bin:$mavenhome/bin:$PATH'
 	}
 	stages{
 		stage('build'){	
 			steps{
 				sh 'mvn --version'	
 				sh 'docker version'
-				echo '$PATH'
+				echo '$PATH+EXTRA'
 				echo 'env.BUILD_ID'
 				echo 'env. BUILD_URL'
 				echo 'env.JOB_NAME'
