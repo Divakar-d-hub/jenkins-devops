@@ -9,7 +9,7 @@
 pipeline
 {	
 	//agent any
-	agent { docker { image 'custom-maven-image' } }
+	agent { docker { image 'maven:3.9.9' } }
 	stages{
 		stage('build'){	
 			steps{
