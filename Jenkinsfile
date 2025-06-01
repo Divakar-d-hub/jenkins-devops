@@ -21,11 +21,11 @@ pipeline
 			steps{
 				sh "mvn --version"	
 				sh "docker version"
-				echo "$PATH"
-				echo "$env.BUILD_ID"
-				echo "$env.BUILD_URL"
-				echo "$env.JOB_NAME"
-				echo "$env.BUILD_TAG"
+				echo "PATH - $PATH"
+				echo "BUILD_ID- $env.BUILD_ID"
+				echo "BUILD_URL- $env.BUILD_URL"
+				echo "JOB_NAME- $env.JOB_NAME"
+				echo "BUILD_TAG - $env.BUILD_TAG"
 			}
 		}
 		stage('Test'){
