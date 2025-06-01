@@ -17,7 +17,7 @@ pipeline
 		PATH= "$dockerhome/bin:$mavenhome/bin:$PATH"
 	}
 	stages{
-		stage('build'){	
+		stage('checkout'){	
 			steps{
 				sh "mvn --version"	
 				sh "docker version"
@@ -28,30 +28,35 @@ pipeline
 				echo "BUILD_TAG - $env.BUILD_TAG"
 			}
 		}
+		stage('Build'){
+			steps{
+				sh "mvn clean compile"
+			}
+		}
 		stage('Test'){
 			steps{
-		        echo "Test"
+		        sh "mvn test"
 			}
 		}
 		stage('Integration Test'){
 			steps{
-		        echo "Integration Test"
+		        sh "mvn failsafe:integration-test failsafe:verify"
 			}
 		}
 	}
-	post
-	{
-		always{
-			echo 'run always'
-		}
-		success{
-			echo 'run when success'
-		}
-		failure
-		{
-			echo 'run when failure'
-		}
-	}
+	// post
+	// {
+	// 	always{
+	// 		echo 'run always'
+	// 	}
+	// 	success{
+	// 		echo 'run when success'
+	// 	}
+	// 	failure
+	// 	{
+	// 		echo 'run when failure'
+	// 	}
+	// }
 }
 
 
